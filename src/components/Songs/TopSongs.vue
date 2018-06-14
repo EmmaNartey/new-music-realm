@@ -18,7 +18,9 @@
 export default {
     data () {
         return {
-        songs: []
+        songs: [],
+          total: 0,
+          pager: {}
         }
     },
 
@@ -32,10 +34,12 @@ export default {
         {
             let uri = 'https://music-realm.herokuapp.com/api/v1/eng/top-songs';
             this.axios.get(uri).then((response) => {
-                this.songs = response.data;
+                this.songs = response.data.songs;
+                this.total = response.data.count;
+                this.pager = response.data.pager;
             });
         }
-    }    
+    }
 }
 </script>
 
