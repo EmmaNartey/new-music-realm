@@ -15,6 +15,9 @@
 </template>
 
 <script>
+
+  // <music-card :song="song"></music-card>
+
 export default {
     data () {
         return {
