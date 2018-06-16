@@ -9,6 +9,7 @@
       <div class='content'>
         <a class='description'><b>{{ song.title }}</b></a>
         <div class='meta'>{{ song.artiste }}</div>
+        <button @click="play(song)">Play</button>
       </div>
     </div>
   </div>
@@ -17,7 +18,6 @@
 <script>
 
   // <music-card :song="song"></music-card>
-
 export default {
     data () {
         return {
@@ -41,7 +41,16 @@ export default {
                 this.total = response.data.count;
                 this.pager = response.data.pager;
             });
+        },
+
+        play(song){
+
+          console.log(song.title);
+
+          const player = window.Player.getInstance(song.source);
+          player.play();
         }
+
     }
 }
 </script>

@@ -8,11 +8,11 @@ import 'semantic-ui-css/semantic.min.css'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
-Vue.use(SuiVue)
+Vue.use(SuiVue);
 
-Vue.use(VueAxios, axios)
+Vue.use(VueAxios, axios);
 
 /* eslint-disable no-new */
 new Vue({
@@ -20,4 +20,11 @@ new Vue({
   router,
   components: { App },
   template: '<App/>'
-})
+});
+
+window.axios = require('axios');
+
+
+// We load classes
+import Player from './classes/Player/Player';
+window.Player = Player;
