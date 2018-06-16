@@ -10,7 +10,7 @@
         </a>
         <div class='content'>
             <div class='description'><b>{{ song.title }}</b></div>
-            <div class='meta'>{{ song.artist }}</div>
+            <div class='meta'>{{ song.artiste }}</div>
         </div>
 	</div>
 	<div class="ui container">
@@ -55,7 +55,7 @@
             {
                 let uri = 'http://localhost:3000/api/v1/eng/top-songs';
                 this.axios.get(uri).then((response) => {
-                    this.songs = response.data;
+                    this.songs = response.data.songs;
                 });
             }
         }

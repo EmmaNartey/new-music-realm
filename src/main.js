@@ -21,3 +21,10 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+window.axios = require('axios');
+
+// We load classes
+import Player from './classes/Player/Player';
+window.Player = Player;
+

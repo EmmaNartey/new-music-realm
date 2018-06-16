@@ -57,7 +57,7 @@
             {
                 let uri = 'https://music-realm.herokuapp.com/api/v1/eng/songs';
                 this.axios.get(uri).then((response) => {
-                    this.songs = response.data;
+                    this.songs = response.data.songs;
                 });
             }
         }
