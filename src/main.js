@@ -22,8 +22,12 @@ new Vue({
   template: '<App/>'
 });
 
-window.axios = require('axios');
 
+// We register an event bus
+window.EventBus = new Vue({});
+
+
+window.axios = require('axios');
 
 // We load classes
 import Player from './classes/Player/Player';

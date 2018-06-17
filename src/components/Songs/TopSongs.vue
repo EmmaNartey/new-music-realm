@@ -1,23 +1,13 @@
 <template>
   <div class="ui stackable five cards">
-    <div class='ui card' v-for="(song, index) in songs" :key='index'>
-      <a class='image'>
-        <router-link :to="'/songs/'+song.id">
-          <img :src="song.thumbnail" style="width:150.84px;height:150.84px;" alt="">
-        </router-link>
-      </a>
-      <div class='content'>
-        <a class='description'><b>{{ song.title }}</b></a>
-        <div class='meta'>{{ song.artiste }}</div>
-        <button @click="play(song)">Play</button>
-      </div>
-    </div>
+    <template v-for="song in songs">
+        <song-card :song="song" :key='song.id'></song-card>
+    </template>
   </div>
 </template>
 
 <script>
-
-  // <music-card :song="song"></music-card>
+import SongCard from '@/components/SongCard'
 export default {
     data () {
         return {
@@ -37,7 +27,9 @@ export default {
         {
             let uri = 'https://music-realm.herokuapp.com/api/v1/eng/top-songs';
             this.axios.get(uri).then((response) => {
-                this.songs = response.data.songs;
+                this.songs = response.data.songs.filter(song => {
+                    return song.source.endsWith('.mp3'); // We filter down actual songs
+                });
                 this.total = response.data.count;
                 this.pager = response.data.pager;
             });
@@ -51,6 +43,10 @@ export default {
           player.play();
         }
 
+    },
+
+    components: {
+      'song-card': SongCard
     }
 }
 </script>
