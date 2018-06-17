@@ -17,6 +17,11 @@
             <span v-show="!isPlaying || isPaused" @click="play(song)"><i class="far fa-play-circle fa-3x"></i></span>
             <span v-show="isPlaying && !isPaused" @click="pause"><i class="far fa-pause-circle fa-3x"></i></span>
         </div>
+        <div class="misc">
+          <span><i class="far fa-thumbs-up"></i></span>
+          <span><i class="far fa-thumbs-down"></i></span>
+          <span><i class="fas fa-cloud-download-alt"></i></span>
+        </div>
 
       </div>
     </div>
@@ -28,14 +33,19 @@
     z-index: 999;
     position: absolute;
     background: rgba(0,0,0,.7);
-    height: 100%;
     width: 100%;
+    height: 100%;
     color: #fff;
+    padding-top: 50%;
   }
 
-  .play-pause{
-    margin: 50% auto;
+  .play-pause,
+  .misc{
     text-align: center;
+  }
+
+  .misc{
+      margin-top: 40px!important;
   }
 
 </style>
