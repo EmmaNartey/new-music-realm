@@ -3,7 +3,7 @@
       <div>
         <a class='image'>
           <router-link :to="'/songs/'+song.id">
-            <img :src="song.thumbnail" style="width:150.84px;height:150.84px;" alt="">
+            <img :src="song.thumbnail" class="song-thumbnail" alt="">
           </router-link>
         </a>
         <div class='content' style="padding: 10px;">

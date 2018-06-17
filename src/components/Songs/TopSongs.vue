@@ -53,4 +53,8 @@ export default {
 
 <style>
 
+  .song-thumbnail{
+    width: 100%;
+    height: 150px;
+  }
 </style>
