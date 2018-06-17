@@ -55,15 +55,8 @@ export default {
 </script>
 
 <style scoped>
-.ui.form .field>label {
+.ui.form .field>label, h2.ui.header, h2.ui.header .sub.header {
   color: aliceblue;
 }
 
-h2.ui.header {
-  color: aliceblue;
-}
-
-h2.ui.header .sub.header {
-  color: aliceblue;
-}
 </style>

@@ -56,5 +56,7 @@ export default {
 </script>
 
 <style scoped>
-
+.ui.header, .ui.items>.item>.content>a.header {
+  color: aliceblue;
+}
 </style>

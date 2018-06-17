@@ -22,7 +22,7 @@
       <div class="field">
         <textarea></textarea>
       </div>
-      <div class="ui inverted red labeled submit icon button">
+      <div class="ui blue labeled submit icon button">
         <i class="icon edit"></i> Add Reply
       </div>
     </form>
@@ -65,5 +65,11 @@ export default {
 </script>
 
 <style scoped>
+.ui.header, .ui.comments .comment .author, .ui.comments .comment .text {
+  color: aliceblue;
+}
 
+.ui.comments .comment .metadata, .ui.comments .comment .actions a {
+  color: #2185d0;
+}
 </style>

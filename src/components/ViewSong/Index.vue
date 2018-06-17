@@ -101,5 +101,11 @@ export default {
 .aplayer{
   background: #e0e1e2 !important;
 }
+.ui.header, .ui.header+p>span {
+  color: aliceblue;
+}
+.ui.small.header {
+  color: black;
+}
 </style>
 
