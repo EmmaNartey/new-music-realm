@@ -73,6 +73,8 @@ export default {
       pause(){
           this.isPaused = true;
           window.Player.pause();
+
+          window.EventBus.$emit('SongPaused', window.Player.getNowPlaying());
       },
 
       /**
@@ -97,6 +99,12 @@ export default {
   mounted(){
 
     /**
+     * We check if there's a song currently playing and
+     * set the playing status of this song if the sources match
+     */
+    this.isPlaying = window.Player.getNowPlaying() !== null && window.Player.getNowPlaying() === this.song.source;
+
+    /**
      * We listen for song playing event
      * and toggle the playing status of the song
      * based on the currently being played song
@@ -104,6 +112,16 @@ export default {
     window.EventBus.$on('SongPlaying', song => {
         this.isPlaying = song.id === this.song.id;
       });
+
+    /**
+     * We listen for a song paused event
+     * and toggle the playing status
+     */
+    window.EventBus.$on('SongPaused', songSource => {
+      // First, we reset the play/pause button
+      this.isPaused = songSource !== null && this.song.source === songSource;
+    });
+
     }
 }
 </script>

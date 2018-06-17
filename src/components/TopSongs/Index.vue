@@ -1,17 +1,7 @@
 <template>
   <div class="ui stackable five cards">
 	<div class='ui card' v-for="song in songs" :key="song.id">
-        <a>
-            <router-link :to="'/songs/'+song.id">
-    		    <div class='ui image'>
-    		      <img :src="song.thumbnail" style="width:208.59px;height:208.59px;" alt="">
-    		    </div>
-    		</router-link>
-        </a>
-        <div class='content'>
-            <div class='description'><b>{{ song.title }}</b></div>
-            <div class='meta'>{{ song.artiste }}</div>
-        </div>
+        <song-card :song="song" :key="song.id"></song-card>
 	</div>
 	<div class="ui container">
         <br>
@@ -38,8 +28,11 @@
 </template>
 
 <script>
+    import SongCard from "@/components/SongCard";
+
     export default {
-        data(){
+      components: {'song-card': SongCard},
+      data(){
             return{
                 songs: []
             }
@@ -62,6 +55,11 @@
     }
 </script>
 
-<style scoped>
+<style>
+
+  .song-thumbnail{
+    width: 100%;
+    height: 208px;
+  }
 
 </style>
