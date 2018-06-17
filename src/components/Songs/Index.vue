@@ -89,5 +89,8 @@ export default {
 </script>
 
 <style>
+.content {
+  color: aliceblue;
+}
 
 </style>

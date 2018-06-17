@@ -1,8 +1,14 @@
 <template>
-  <div id='main-menu' class='ui stackable inverted menu'>
-    <a class='active red item'><router-link :to="{ name: 'Songs' }">Music Realm</router-link></a>
-    <a class='item'><router-link :to="{ name: 'TopSongs' }">Top Songs</router-link></a>
-    <a class='item'><router-link :to="{ name: 'NewReleases' }">New Releases</router-link></a>
+  <div id='main-menu' class='ui blue stackable inverted menu'>
+    <a class='active item'>
+      <router-link :to="{ name: 'Songs' }">Music Realm</router-link>
+    </a>
+    <a class='item'>
+      <router-link :to="{ name: 'TopSongs' }">Top Songs</router-link>
+    </a>
+    <a class='item'>
+      <router-link :to="{ name: 'NewReleases' }">New Releases</router-link>
+    </a>
     <div class='right menu'>
       <div class='ui category search item'>
         <div class='ui inverted icon input'>

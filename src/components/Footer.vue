@@ -33,5 +33,8 @@ export default {
 </script>
 
 <style scoped>
+.row {
+  color: aliceblue
+}
 
 </style>

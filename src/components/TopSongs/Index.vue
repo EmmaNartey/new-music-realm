@@ -53,7 +53,7 @@
         methods: {
             fetchTopSongs()
             {
-                let uri = 'http://localhost:3000/api/v1/eng/top-songs';
+                let uri = 'https://music-realm.herokuapp.com/api/v1/eng/top-songs';
                 this.axios.get(uri).then((response) => {
                     this.songs = response.data.songs;
                 });

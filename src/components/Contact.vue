@@ -38,7 +38,7 @@
         <label>Message</label><textarea></textarea>
       </div>
       <br>
-      <button id='submit' class="ui inverted red button" type="submit">Submit</button>
+      <button id='submit' class="ui blue button" type="submit">Submit</button>
       <div id='success' class="ui ignored positive message hidden">Email Sent</div>
       <div id='fail' class="ui ignored positive message hidden">Failed. Try Again</div>
     </div>
@@ -55,5 +55,15 @@ export default {
 </script>
 
 <style scoped>
+.ui.form .field>label {
+  color: aliceblue;
+}
 
+h2.ui.header {
+  color: aliceblue;
+}
+
+h2.ui.header .sub.header {
+  color: aliceblue;
+}
 </style>
