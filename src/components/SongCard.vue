@@ -18,11 +18,21 @@
             <span v-show="isPlaying && !isPaused" @click="pause"><i class="far fa-pause-circle fa-3x"></i></span>
         </div>
         <div class="misc">
-          <span><i class="far fa-thumbs-up"></i></span>
-          <span><i class="far fa-thumbs-down"></i></span>
-          <span><i class="fas fa-cloud-download-alt"></i></span>
+          <span>
+            <i class="cloud download icon"></i>
+              <h4>125</h4>  
+          </span>
         </div>
-
+        <div class="extra content">
+          <span class="left floated like">
+            <i class="like icon"></i>
+              <h4>20</h4>
+          </span>
+          <span class="right floated">
+            <i class="comments outline icon"></i>
+              <h4>71</h4>
+          </span>
+        </div>
       </div>
     </div>
 </template>
@@ -45,7 +55,26 @@
   }
 
   .misc{
-      margin-top: 40px!important;
+    margin-top: 20px!important;
+  }
+
+  .extra.content {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  h4 {
+    font-size: 1em;
+    margin-top: .3em;
+    margin-bottom: .1em;
+  }
+
+  i {
+    cursor: pointer;
+  }
+
+  .cloud.download:hover, .like.icon:hover, .comments.icon:hover {
+    color: #2185d0;
   }
 
 </style>
