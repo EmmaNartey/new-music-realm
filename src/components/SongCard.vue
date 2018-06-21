@@ -1,5 +1,6 @@
 <template>
     <div class='ui card' v-on:mouseover="mouseOver" v-on:mouseout="mouseOut">
+      
       <div>
         <a class='image'>
           <router-link :to="'/songs/'+song.id">
@@ -11,7 +12,18 @@
           <div class='meta'>{{ song.artiste }}</div>
         </div>
       </div>
+
       <div v-show="hovered" class="controls">
+
+        <div class="major" @mouseover="listOne = true" @mouseleave="listOne = false">
+          <i class="ellipsis horizontal icon"></i>
+          <transition name="fade">
+            <div class="list" v-if="listOne" @click="listOne = false">
+              <div class="mini"><i class="music icon"></i>add to playlist</div>
+              <div class="mini"><i class="share square outline icon"></i>share</div>
+            </div>
+          </transition>
+        </div>
 
         <div class="play-pause">
             <span v-show="!isPlaying || isPaused" @click="play(song)"><i class="far fa-play-circle fa-3x"></i></span>
@@ -20,7 +32,7 @@
         <div class="misc">
           <span>
             <i class="cloud download icon"></i>
-              <h4>125</h4>  
+              <h4>12</h4>
           </span>
         </div>
         <div class="extra content">
@@ -77,6 +89,59 @@
     color: #2185d0;
   }
 
+.major {  
+  font: 14px/1.5 'Open Sans', sans-serif;
+  font-weight: 600;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.major .ellipsis.horizontal {
+  writing-mode: tb-rl;
+  margin-top: 0.1em;
+  margin-left: 0.4em;
+  font-weight: bold;
+  font-size: 1.2em;
+  padding-right: 10px;
+  cursor: pointer;
+  float: right;
+}
+
+.major .list {
+  position: absolute;
+  left: 0;
+  top: 60px;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.major .list .mini {
+  background: #333;
+  transition: background .2s;
+  cursor: pointer;
+  display:block;
+  float: left;
+  position: relative;
+  background: #222;
+  color: #fff;
+  min-width: 160px;
+  font-size: 1.1em;
+  height: 2.2em;
+}
+
+.major .list .mini:hover {
+  background: #2185d0;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .2s;
+}
+.fade-enter, .fade-leave-active {
+  opacity: 0;
+}
+
 </style>
 
 
@@ -89,7 +154,8 @@ export default {
         return{
             hovered: false,
             isPlaying: false,
-            isPaused: false
+            isPaused: false,
+            listOne: false
         }
     },
 
@@ -164,9 +230,4 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-
-</style>
-
 

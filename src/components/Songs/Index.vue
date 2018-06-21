@@ -70,6 +70,7 @@
         <br>
         <div class="ui vertical rectangle test ad" data-text="Vertical Rectangle"></div>
       </div>
+
     </div>
   </div>
 </template>
@@ -80,6 +81,11 @@ import TopSongs from './TopSongs'
 import NewReleases from './NewReleases'
 
 export default {
+  data(){
+    return{
+    }
+  },
+
   components: {
     FirstView,
     TopSongs,
