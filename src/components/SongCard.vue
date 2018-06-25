@@ -1,6 +1,6 @@
 <template>
     <div class='ui card' v-on:mouseover="mouseOver" v-on:mouseout="mouseOut">
-      
+
       <div>
         <a class='image'>
           <router-link :to="'/songs/'+song.id">
@@ -30,20 +30,20 @@
             <span v-show="isPlaying && !isPaused" @click="pause"><i class="far fa-pause-circle fa-3x"></i></span>
         </div>
         <div class="misc">
-          <span>
-            <i class="cloud download icon"></i>
-              <h4>12</h4>
-          </span>
         </div>
         <div class="extra content">
-          <span class="left floated like">
+          <div class="item" style="float: left;">
             <i class="like icon"></i>
               <h4>20</h4>
-          </span>
-          <span class="right floated">
+          </div>
+          <div class="item">
+            <i class="cloud download icon"></i>
+              <h4>12</h4>
+          </div>
+          <div class="item" style="float: right;">
             <i class="comments outline icon"></i>
               <h4>71</h4>
-          </span>
+          </div>
         </div>
       </div>
     </div>
@@ -51,6 +51,15 @@
 
 
 <style scoped>
+
+  .extra.content .item{
+    margin-top: 50px;
+    display: inline-block;
+    width: calc(100%/3);
+    text-align: center;
+    font-size: 12px!important;
+  }
+
   .controls{
     z-index: 999;
     position: absolute;
@@ -89,12 +98,15 @@
     color: #2185d0;
   }
 
-.major {  
+.major {
   font: 14px/1.5 'Open Sans', sans-serif;
   font-weight: 600;
   margin: 0;
   padding: 0;
   list-style: none;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 .major .ellipsis.horizontal {
@@ -108,26 +120,27 @@
   float: right;
 }
 
-.major .list {
-  position: absolute;
-  left: 0;
-  top: 60px;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
+/*.major .list {*/
+  /*position: absolute;*/
+  /*left: 0;*/
+  /*top: 60px;*/
+  /*margin: 0;*/
+  /*padding: 0;*/
+  /*text-align: center;*/
+/*}*/
 
 .major .list .mini {
-  background: #333;
   transition: background .2s;
   cursor: pointer;
   display:block;
   float: left;
   position: relative;
-  background: #222;
+  background: #000;
   color: #fff;
-  min-width: 160px;
-  font-size: 1.1em;
+  /*min-width: 160px;*/
+  width: 100%;
+  padding: 5px;
+  font-size: 12px;
   height: 2.2em;
 }
 
