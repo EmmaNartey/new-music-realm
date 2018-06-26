@@ -5,6 +5,7 @@ import Contact from '@/components/Contact'
 import TopSongs from '@/components/TopSongs/Index'
 import NewReleases from '@/components/NewReleases/Index'
 import ViewSong from '@/components/ViewSong/Index'
+import PlayList from '@/components/PlayList/Index'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/songs/:id',
       name: 'ViewSong',
       component: ViewSong
+    },
+    {
+      path: '/play-list',
+      name: 'PlayList',
+      component: PlayList
     }
   ]
 })

@@ -1,49 +1,47 @@
 <template>
   <div class="ui stackable five cards">
-  	<div class='ui card' v-for="song in songs" :key='song.id'>
-  	    <a>
-    		<router-link :to="'/songs/'+song.id">
-    		    <div class='ui image'>
-    		      <img :src="song.thumbnail" style="width:208.59px;height:208.59px;" alt="">
-    		    </div>
-    		</router-link>
-  	    </a>
-        <div class='content'>
-            <div class='description'>
-                <b>{{ song.title }}</b>
-            </div>
-            <div class='meta'>{{ song.artiste }}</div>
-        </div>
-  	</div>
-  	<div class="ui container">
-  	    <br>
+	<div class='ui card' v-for="song in songs" :key="song.id">
+        <song-card :song="song" :key="song.id"></song-card>
+	</div>
+	<div class="ui container">
+        <br>
     	<div class='ui grid'>
-    	  <div class='two column row'>
-    	    <div class='left floated column'>
-    	      <a href='mixtapes?p=0'>
-      		    <button class='ui labeled icon button'>
-      		      <i class='left chevron icon'></i>Newer
-      		    </button>
-      		  </a>
-    	    </div>
-    	    <div class='right'>
-      		  <a href='mixtapes?p=1'>
-      		    <button class='ui right labeled icon button'>
-      		      Older<i class='right chevron icon'></i>
-      		    </button>
-      		  </a>
-    	    </div>
-    	  </div>
-    	</div>
+            <div class='two column row'>
+                <div class='left floated column'>
+                    <a href='#' @click.prevent="previous">
+                        <button :class="'ui labeled icon button ' + (this.previousPage === null ? 'disabled' : '')">
+                        <i class='left chevron icon'></i>Newer
+                        </button>
+                    </a>
+                </div>
+                <div class='right'>
+                    <a href='#' @click.prevent="next">
+                        <button :class="'ui right labeled icon button ' + (this.nextPage === null ? 'disabled' : '')">
+                        Older<i class='right chevron icon'></i>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
   	</div>
   </div>
 </template>
 
 <script>
+    import SongCard from "@/components/SongCard";
+
     export default {
-        data(){
+      components: {'song-card': SongCard},
+      data(){
             return{
-                songs: []
+                // The actively shown songs
+                songs: [],
+
+                // The total items fetched at a goal
+                limit: 10,
+
+                nextPage: null,
+                previousPage: null
             }
         },
 
@@ -53,19 +51,61 @@
         },
 
         methods: {
-            fetchSongs()
+            /**
+                Fetches top songs from the server
+                using the given url
+                @param url string
+             */
+            fetchSongs(url)
             {
-                let uri = 'https://music-realm.herokuapp.com/api/v1/eng/songs';
-                this.axios.get(uri).then((response) => {
-                    this.songs = response.data.songs.filter(song => {
-                      return song.source.endsWith('.mp3'); // We filter down actual songs
-                    });
+                this.axios.get(url).then((response) => {
+                    this.songs = response.data.songs.filter(song => song.source.endsWith('.mp3'));
+                    this.nextPage = (response.data.paging.next === undefined) ? null : response.data.paging.next;
+                    this.previousPage = (response.data.paging.prev === undefined) ? null : response.data.paging.prev;
                 });
+            },
+
+
+            /**
+                Gets the next page of top-songs
+             */
+            next(){
+
+                // We check if there is a next page,
+                // and request it
+                if(this.nextPage !== null) this.fetchSongs(this.nextPage);
+            },
+
+
+            /**
+                Gets the previous page of top songs
+             */
+            previous(){
+
+                // We check if there's a previous page,
+                // and request it
+                if(this.previousPage !== null) this.fetchSongs(this.previousPage);
             }
+
+
+
+        },
+
+        mounted(){
+
+            // We fetch the first page
+            this.fetchSongs('https://music-realm.herokuapp.com/api/v1/eng/songs?limit='+this.limit);
         }
+
+
     }
 </script>
 
-<style scoped>
+<style>
+
+  .song-thumbnail{
+    width: 100%;
+    height: 208px;
+  }
 
 </style>

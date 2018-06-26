@@ -9,6 +9,9 @@
     <a class='item'>
       <router-link :to="{ name: 'NewReleases' }">New Releases</router-link>
     </a>
+    <a class='item'>
+      <router-link :to="{ name: 'PlayList' }"><i class="headphones icon"></i>My Playlist</router-link>
+    </a>
     <div class='right menu'>
       <div class='ui category search item'>
         <div class='ui inverted icon input'>
