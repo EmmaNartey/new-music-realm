@@ -24,11 +24,11 @@ router.beforeResolve((to, from, next) => {
       NProgress.start()
   }
   next()
-})
+});
 
 router.afterEach(() => {
   NProgress.done()
-})
+});
 
 /* eslint-disable no-new */
 new Vue({
@@ -46,5 +46,21 @@ window.EventBus = new Vue({});
 window.axios = require('axios');
 
 // We load classes
+
+/**
+ * First, we load the Player class
+ */
 import Player from './classes/Player/Player';
 window.Player = Player;
+
+/**
+ * Next, we add the playlist manager
+ * Available Methods:
+ * all() - gets all the playlists
+ * get(name) - gets a playlist by name
+ * add(name, songs = []) - adds a playlist
+ * remove(name) - removes a playlist by name
+ * update(name, songs) - Updates a playlist by name
+ */
+import PlaylistManager from './classes/Playlist/PlaylistManager';
+window.Playlists = new PlaylistManager;
