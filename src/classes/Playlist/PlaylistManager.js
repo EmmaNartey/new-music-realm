@@ -30,6 +30,15 @@ export default class PlaylistManager{
   }
 
   /**
+   * Checks if a playlist name exists
+   * @param name
+   * @returns {boolean}
+   */
+  exists(name){
+      return this.repository.exists(name);
+  }
+
+  /**
    * Creates a new playlist
    * @param name
    * @param songs

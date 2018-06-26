@@ -3,12 +3,12 @@
 
       <div>
         <a class='image'>
-          <router-link :to="'/songs/'+song.id">
-            <img :src="playlist.thumbnail" class="playlist-thumbnail" alt="">
+          <router-link :to="'/playlists/'+playlist.getName()">
+            <img :src="playlist.getThumbnail()" class="playlist-thumbnail" alt="">
           </router-link>
         </a>
         <div class='content' style="padding: 10px;">
-          <a class='description'><b>{{ playlist.name }}</b></a>
+          <a class='description'><b>{{ playlist.getName() }}</b></a>
         </div>
       </div>
 

@@ -39,6 +39,31 @@ export default class Playlist{
     return this.songs;
   }
 
+
+  /**
+   * Gets the name of the playlist
+   * @returns {*}
+   */
+  getName(){
+      return this.name;
+  }
+
+
+  /**
+   * Gets the thumbnail of the playlist
+   * @returns {*}
+   */
+  getThumbnail(){
+    if(this.songs.length > 0){
+        // We return the thumbnail of the first song
+        return this.songs[0].thumbnail;
+    }
+
+    // @TODO: Return a generic thumbnail for empty playlists
+    return null;
+  }
+
+
   /**
    * Converts the playlist to json
    * @returns {{name: *, songs: *}}

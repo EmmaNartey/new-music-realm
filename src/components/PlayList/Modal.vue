@@ -12,13 +12,13 @@
 
                     <div class="modal-body">
                         <slot name="body">
-                        <input type="text" placeholder="Playlist Name">
+                        <input v-model="form.name" type="text" placeholder="Playlist Name">
                         </slot>
                     </div>
 
                     <div class="modal-footer">
                         <slot name="footer">
-                        <button class="ui inverted blue button" @click="$emit('close')">
+                        <button class="ui inverted blue button" @click="create">
                             Create
                         </button>
                         </slot>
@@ -31,7 +31,38 @@
 
 <script>
 export default {
-    
+
+    data(){
+      return{
+        form: {
+          name: ''
+        }
+      }
+    },
+    methods: {
+
+        create(){
+
+          // We create the playlist
+          if(this.form.name.length === 0){
+            // User provided no name
+              alert('Please provide a name for the playlist');
+              return;
+          }
+
+          if(window.Playlists.exists(this.form.name)){
+             alert('There is a playlist with this name. Please choose another name.');
+             return;
+          }
+
+          window.Playlists.add(this.form.name);
+
+          // We close the modal
+          window.$emit('close');
+        }
+
+    }
+
 }
 </script>
 

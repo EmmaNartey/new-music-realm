@@ -2,8 +2,8 @@
     <div>
 
         <div class="ui stackable five cards" v-show="playlists.length > 0">
-            <div class='ui card' v-for="playlist in playlists" :key="playlist.id">
-                <playlist-card :playlist="playlist" :key="playlist.id"></playlist-card>
+            <div class='ui card' v-for="playlist in playlists" :key="playlist.getName()">
+                <playlist-card :playlist="playlist" :key="playlist.getName()"></playlist-card>
             </div>
         </div>
 
@@ -29,6 +29,7 @@
 <script>
 import PlayListCard from "./PlayListCard";
 import Modal from "./Modal";
+import Playlists from '../../classes/Playlist/PlaylistManager';
 
 export default {
     components: {
@@ -41,9 +42,19 @@ export default {
             // The actively shown playlists
             playlists: [],
 
-            showModal: false
+            showModal: false,
+
+            playlistManager: null
 
         }
+    },
+
+    mounted(){
+
+        this.playlistManager = new Playlists();
+
+        // We fetch all the playlists
+        this.playlists = this.playlistManager.all();
     }
 }
 </script>

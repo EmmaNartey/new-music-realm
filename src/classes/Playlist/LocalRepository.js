@@ -11,6 +11,7 @@ const PLAYLIST_KEY = 'MUSIC_REALM_PLAYLIST';
  */
 export default class LocalRepository{
 
+
   /**
    * We load the playlists from the browser's local storage
    * @returns {*}
