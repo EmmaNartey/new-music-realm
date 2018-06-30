@@ -4,6 +4,8 @@
             <div class="modal-wrapper">
                 <div class="modal-container">
 
+                    <i class="times icon" @click="$emit('close')"></i>
+
                     <div class="modal-header">
                         <slot name="header">
                         default header
@@ -12,17 +14,17 @@
 
                     <div class="modal-body">
                         <slot name="body">
-                        <input v-model="form.name" type="text" placeholder="Playlist Name">
+
+                            <div class='ui inverted icon input'>
+                                <input id='playlist-term' v-model="form.name" class='prompt' type='text' placeholder='Playlist Name'>
+                            </div>
+
+                            <button class="ui inverted blue button" @click="create">
+                                Create
+                            </button>
                         </slot>
                     </div>
 
-                    <div class="modal-footer">
-                        <slot name="footer">
-                        <button class="ui inverted blue button" @click="create">
-                            Create
-                        </button>
-                        </slot>
-                    </div>
                 </div>
             </div>
         </div>
@@ -86,8 +88,8 @@ export default {
 }
 
 .modal-container {
-  width: 400px;
-  height: 200px;
+  width: 350px;
+  height: 150px;
   margin: 0px auto;
   padding: 20px 30px;
   background-color: #fff;
@@ -97,17 +99,35 @@ export default {
   font-family: Helvetica, Arial, sans-serif;
 }
 
+.times.icon {
+    float: right;
+    color: #2185d0;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.times.icon:hover {
+    color: #033153d2;
+}
+
 .modal-header {
-  margin-top: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
   color: #42b983;
 }
 
 .modal-body {
-  margin: 20px 0;
+  margin: 40px 0;
+}
+
+.ui.input>input {
+    background: #2185d0;
+    color: #fff;
 }
 
 .ui.inverted.blue.button {
   float: right;
+  padding: 0.9em 1.0em 0.9em;
 }
 
 .ui.inverted.blue.button, .ui.inverted.blue.buttons .button {

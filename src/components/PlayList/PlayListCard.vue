@@ -9,6 +9,7 @@
         </a>
         <div class='content' style="padding: 10px;">
           <a class='description'><b>{{ playlist.getName() }}</b></a>
+          <div class='meta'>{{ playlist.getSongCount() }}</div>
         </div>
       </div>
 
@@ -35,7 +36,7 @@
 
 
 <style scoped>
-.controls{
+.controls {
     z-index: 999;
     position: absolute;
     background: rgba(0,0,0,.7);
@@ -46,11 +47,11 @@
 }
 
   .play-pause,
-  .misc{
+  .misc {
     text-align: center;
   }
 
-  .misc{
+  .misc {
     margin-top: 20px!important;
   }
 
@@ -71,10 +72,9 @@
 
 .major .times.icon {
   writing-mode: tb-rl;
-  margin-top: 0.1em;
+  margin-top: 0.3em;
+  margin-bottom: 0.2em;
   margin-left: 0.4em;
-  font-weight: bold;
-  font-size: 1.2em;
   padding-right: 10px;
   cursor: pointer;
   float: right;
@@ -101,6 +101,7 @@
 .fade-enter-active, .fade-leave-active {
   transition: opacity .2s;
 }
+
 .fade-enter, .fade-leave-active {
   opacity: 0;
 }
@@ -120,6 +121,45 @@ export default {
             isPaused: false,
             listOne: false
         }
+    },
+
+    methods: {
+
+      /**
+       * Plays the song using the player
+       * @param song
+       */
+      play(song){
+        window.Player.play(song.source);
+        window.EventBus.$emit('SongPlaying', song);
+
+        this.isPaused = false;
+      },
+
+      /**
+       * When the pause button is clicked
+       */
+      pause(){
+          this.isPaused = true;
+          window.Player.pause();
+
+          window.EventBus.$emit('SongPaused', window.Player.getNowPlaying());
+      },
+
+      /**
+       * When mouse is on card
+       */
+      mouseOver(){
+         this.hovered = true;
+      },
+
+      /**
+       * When mouse is not on card
+       */
+      mouseOut(){
+        this.hovered = false;
+      }
+
     }
 }
 

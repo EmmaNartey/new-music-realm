@@ -7,10 +7,6 @@
             </div>
         </div>
 
-        <div class="no-playlists" v-show="playlists.length === 0">
-            <p class="text-danger"><i class="microphone slash icon"></i>No Playlists found!</p>
-        </div>
-
         <div id="app">
             <button class="ui inverted blue button" id="show-modal" @click="showModal = true">Create Playlist</button>
             <!-- use the modal component, pass in the prop -->
@@ -21,6 +17,13 @@
                 -->
                 <h3 slot="header">Create Your Playlist</h3>
             </modal>
+        </div>
+
+        <br>
+        <br>
+
+        <div class="no-playlists" v-show="playlists.length === 0">
+            <p class="text-danger"><i class="microphone slash icon"></i>No Playlists found!</p>
         </div>
 
   </div>
@@ -60,6 +63,11 @@ export default {
 </script>
 
 <style scoped>
+
+#app {
+    margin-top: 20px;
+    float: right;
+}
 
 h3 {
   margin-top: 10px;
