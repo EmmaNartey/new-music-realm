@@ -15,13 +15,19 @@
                     <div class="modal-body">
                         <slot name="body">
 
-                            <div class='ui inverted icon input'>
+                            <div v-show="!state.done">
+                              <div class='ui inverted icon input'>
                                 <input id='playlist-term' v-model="form.name" class='prompt' type='text' placeholder='Playlist Name'>
-                            </div>
+                              </div>
 
-                            <button class="ui inverted blue button" @click="create">
+                              <button class="ui inverted blue button" @click="create" v-show="!state.processing">
                                 Create
-                            </button>
+                              </button>
+                              <i class="fa fa-spinner fa-spin fa-2x" v-show="state.processing"></i>
+                            </div>
+                          <div v-show="state.done">
+                            <p>{{ form.name }} is created!</p>
+                          </div>
                         </slot>
                     </div>
 
@@ -38,6 +44,11 @@ export default {
       return{
         form: {
           name: ''
+        },
+
+        state: {
+          processing: false,
+          done: false
         }
       }
     },
@@ -45,20 +56,34 @@ export default {
 
         create(){
 
+          // We indicate that we're processing
+          this.state.processing = true;
+
           // We create the playlist
           if(this.form.name.length === 0){
             // User provided no name
               alert('Please provide a name for the playlist');
+
+              // We indicate that processing is done!
+              this.state.processing = false;
               return;
           }
 
           if(window.Playlists.exists(this.form.name)){
              alert('There is a playlist with this name. Please choose another name.');
+
+             // We indicate that processing is done!
+             this.state.processing = false;
              return;
           }
 
           window.Playlists.add(this.form.name);
 
+
+
+          // We indicate that state.processing is done!
+          this.state.processing = false;
+          this.state.done = true;
           // We close the modal
           window.$emit('close');
         }
