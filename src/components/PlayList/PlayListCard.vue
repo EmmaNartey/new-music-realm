@@ -3,9 +3,7 @@
 
       <div>
         <a class='image'>
-          <router-link :to="'/playlists/'+playlist.getName()">
             <img :src="playlist.getThumbnail()" class="playlist-thumbnail" alt="">
-          </router-link>
         </a>
         <div class='content' style="padding: 10px;">
           <a class='description'><b>{{ playlist.getName() }}</b></a>
@@ -15,18 +13,15 @@
 
       <div v-show="hovered" class="controls">
 
-        <div class="major" @mouseover="listOne = true" @mouseleave="listOne = false">
+        <div class="major" title="Delete Playlist">
           <i class="times icon"></i>
-          <transition name="fade">
-            <div class="list" v-if="listOne" @click="listOne = false">
-              <div class="mini"><i class="music icon"></i>delete playlist</div>
-            </div>
-          </transition>
         </div>
 
         <div class="play-pause">
+          <router-link :to="'/playlists/'+playlist.getName()">
             <span v-show="!isPlaying || isPaused" @click="play(song)"><i class="far fa-play-circle fa-3x"></i></span>
             <span v-show="isPlaying && !isPaused" @click="pause"><i class="far fa-pause-circle fa-3x"></i></span>
+          </router-link>
         </div>
         <div class="misc">
         </div>
@@ -80,30 +75,16 @@
   float: right;
 }
 
-.major .list .mini {
-  transition: background .2s;
-  cursor: pointer;
-  display:block;
-  float: left;
-  position: relative;
-  background: #000;
-  color: #fff;
-  width: 100%;
-  padding: 5px;
-  font-size: 12px;
-  height: 2.2em;
-}
-
-.major .list .mini:hover {
-  background: #2185d0;
-}
-
 .fade-enter-active, .fade-leave-active {
   transition: opacity .2s;
 }
 
 .fade-enter, .fade-leave-active {
   opacity: 0;
+}
+
+.play-pause a{
+  color: #fff
 }
 
 </style>
@@ -118,8 +99,7 @@ export default {
         return{
             hovered: false,
             isPlaying: false,
-            isPaused: false,
-            listOne: false
+            isPaused: false
         }
     },
 
@@ -159,7 +139,6 @@ export default {
       mouseOut(){
         this.hovered = false;
       }
-
     }
 }
 

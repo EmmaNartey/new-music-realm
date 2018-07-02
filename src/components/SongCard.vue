@@ -15,14 +15,30 @@
 
       <div v-show="hovered" class="controls">
 
-        <div class="major" @mouseover="listOne = true" @mouseleave="listOne = false">
+        <div class="dropdown">
           <i class="ellipsis horizontal icon"></i>
-          <transition name="fade">
-            <div class="list" v-if="listOne" @click="listOne = false">
-              <div class="mini"><i class="music icon"></i>add to playlist</div>
-              <div class="mini"><i class="share square outline icon"></i>share</div>
-            </div>
-          </transition>
+          <ul class="dropdown-menu">
+            <li class="dropdown-submenu">
+              <a class="test" tabindex="-1" href="#">Add to Playlist<i class="caret right icon"></i> <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a class="note" tabindex="-1" href="#">Azonto</a></li>
+                <li><a class="note" tabindex="-1" href="#">New Playlist</a></li>
+              </ul>
+            </li>
+
+            <li class="dropdown-submenu">
+              <a class="test" tabindex="-1" href="#">Share <i class="caret right icon"></i><span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a class="note" tabindex="-1" href="#"><i class="facebook square icon"></i>Facebook</a></li>
+                <li><a class="note" tabindex="-1" href="#"><i class="twitter square icon"></i>Twitter</a></li>
+                <li><a class="note" tabindex="-1" href="#"><i class="facebook messenger icon"></i>Messenger</a></li>
+                <li><a class="note" tabindex="-1" href="#"><i class="skype icon"></i>Skype</a></li>
+                <li><a class="note" tabindex="-1" href="#"><i class="telegram icon"></i>Telegram</a></li>
+                <li><a class="note" tabindex="-1" href="#"><i class="tumblr square icon"></i>Tumblr</a></li>
+                <li><a class="note" tabindex="-1" href="#"><i class="linkify icon"></i>Copy Song Link</a></li>
+              </ul>
+            </li>
+          </ul>
         </div>
 
         <div class="play-pause">
@@ -51,6 +67,9 @@
 
 
 <style scoped>
+.ui.card {
+  border: 1px solid #fff;
+}
 
   .extra.content .item{
     margin-top: 50px;
@@ -98,7 +117,14 @@
     color: #2185d0;
   }
 
-.major {
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .2s;
+}
+.fade-enter, .fade-leave-active {
+  opacity: 0;
+}
+
+.dropdown {
   font: 14px/1.5 'Open Sans', sans-serif;
   font-weight: 600;
   margin: 0;
@@ -109,7 +135,7 @@
   top: 0;
 }
 
-.major .ellipsis.horizontal {
+.dropdown .ellipsis.horizontal {
   writing-mode: tb-rl;
   margin-top: 0.1em;
   margin-left: 0.4em;
@@ -118,43 +144,93 @@
   padding-right: 10px;
   cursor: pointer;
   float: right;
+  color: #fff;
 }
 
-/*.major .list {*/
-  /*position: absolute;*/
-  /*left: 0;*/
-  /*top: 60px;*/
-  /*margin: 0;*/
-  /*padding: 0;*/
-  /*text-align: center;*/
-/*}*/
+.dropdown-submenu {
+    position: relative;
+}
 
-.major .list .mini {
-  transition: background .2s;
-  cursor: pointer;
-  display:block;
-  float: left;
-  position: relative;
-  background: #000;
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+}
+
+.dropdown ul { 
+    padding:1; 
+    margin:1; 
+    list-style:none; 
+}
+
+.dropdown .dropdown-submenu .test {
+    transition: background .2s;
+    cursor: pointer;
+    display: block;
+    float: left;
+    position: relative;
+    background-color: #000;
+    color: hsla(0, 0%, 100%, 0.6);
+    /*min-width: 160px;*/
+    width: 10em;
+    padding: 5px;
+    font-size: 12px;
+    height: 2.2em;
+    text-align: inherit;
+}
+
+.dropdown .dropdown-submenu .test:hover {
   color: #fff;
-  /*min-width: 160px;*/
-  width: 100%;
-  padding: 5px;
+  background-color: #333;
+  border-color: #333;
+}
+
+.dropdown .dropdown-menu a.note {
+  color: hsla(0, 0%, 100%, 0.6);
+  background-color: #000;
   font-size: 12px;
   height: 2.2em;
+  cursor: pointer; 
+  display:block;
+  padding: 5px;
+  position: relative;
+  text-align: inherit;
 }
 
-.major .list .mini:hover {
-  background: #2185d0;
+.dropdown .dropdown-menu a.note:hover {
+  color: #fff;
+  background-color: #333;
+  border-color: #333;
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .2s;
-}
-.fade-enter, .fade-leave-active {
-  opacity: 0;
+.dropdown li ul { 
+  display:none; 
+  position:absolute; 
 }
 
+.dropdown li:hover ul { 
+  display:block; 
+  background-color: #000;
+  color: hsla(0, 0%, 100%, 0.6);
+  height:auto; 
+  width: 13em;
+  align-content: inherit; 
+}
+
+.dropdown li ul li { 
+  clear:both; 
+  border-style:none;
+}
+
+.caret.right.icon {
+  float: right;
+}
+
+.facebook:hover, .facebook.messenger:hover,
+.twitter:hover, .telegram:hover, .skype:hover,
+.tumblr:hover {
+  color: #2185d0;
+} 
 </style>
 
 

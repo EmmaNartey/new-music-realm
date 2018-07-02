@@ -84,6 +84,7 @@ export default {
           // We indicate that state.processing is done!
           this.state.processing = false;
           this.state.done = true;
+
           // We close the modal
           window.$emit('close');
         }

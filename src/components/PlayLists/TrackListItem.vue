@@ -56,6 +56,8 @@
 
 <script>
 export default {
+    name: 'track-list-item',
+    props: 'playlist'
     
 }
 </script>

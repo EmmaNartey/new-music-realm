@@ -99,4 +99,7 @@ export default {
   color: aliceblue;
 }
 
+.ui.header.mheading-1 {
+  text-align: left;
+}
 </style>

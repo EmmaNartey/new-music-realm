@@ -5,7 +5,9 @@
             <div class="four wide column grid">
                 <img id="cover" class="ui fluid image" src="https://i0.wp.com/www.dcleakers.com/wp-content/uploads/2018/01/loyalty.jpg?resize=400%2C434">
                 <h2 class="ui header">Bigdee</h2>
-                <span class="no-of-songs">9 Songs</span>
+                <div class="no-of-songs">
+                    <span>9 Songs</span>
+                </div>
 
                 <div class="ui divider"></div>
 
@@ -27,15 +29,37 @@
 
             <div class="eight wide column">
                 <ol>
-                    <div class="react-contextmenu-wrapper">
-
+                    <div class="react-contextmenu-wrapper" v-for="playlist in playlists" :key="playlist.name">
+                        <track-list-item :playlist="playlist" :key="playlist.name"></track-list-item>
                     </div>
                 </ol>
+            </div>
+
+            <div class="twelve wide column grid">
+                <player-bar></player-bar>
             </div>
 
         </div>
     </div>    
 </template>
+
+<script>
+import TrackListItem from './TrackListItem';
+import PlayerBar from './PlayerBar';
+
+export default {
+    components: {
+        'track-list-item': TrackListItem,
+        'player-bar': PlayerBar
+    },
+    data(){
+        return{
+
+        }
+    }
+}
+</script>
+
 
 <style>
 .ui.header {
@@ -102,6 +126,10 @@
     cursor: pointer;
     line-height: inherit;
     letter-spacing: -.005em;
+}
+
+.no-of-songs {
+    text-align: center;
 }
 </style>
 
